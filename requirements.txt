@@ -2,4 +2,5 @@
 Flask
 
 # Deployment
+honcho
 gunicorn
