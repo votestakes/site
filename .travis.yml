@@ -20,6 +20,8 @@ install:
 # script:
 # - make ci
 
+script: true
+
 after_success:
 - coveralls
 - ocular
