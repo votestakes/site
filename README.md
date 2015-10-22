@@ -2,6 +2,6 @@
 
 > Bet your friends won't vote.
 
-[![Stories in Ready](https://badge.waffle.io/votestakes/site.svg?label=ready&title=Ready)](http://waffle.io/votestakes/site)
 [![Build Status](https://travis-ci.org/votestakes/site.svg?branch=master)](https://travis-ci.org/votestakes/site)
-
+[![Stories in Ready](https://badge.waffle.io/votestakes/site.svg?label=ready&title=stories)](http://waffle.io/votestakes/site)
+[![Slack Status](https://slackin-votestakes.herokuapp.com/badge.svg)](https://slackin-votestakes.herokuapp.com)
