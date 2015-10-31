@@ -8,7 +8,7 @@ cache:
   directores:
   - vendor
 
-before_script:
+install:
 - make depends
 
 script:
