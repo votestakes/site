@@ -1,0 +1,21 @@
+sudo: false
+
+language: ruby
+rvm:
+- 2.2.3
+
+cache:
+  bundler: true
+  directores:
+  - vendor
+
+before_script:
+- make depends
+
+script:
+- make ci
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
