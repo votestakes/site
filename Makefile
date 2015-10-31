@@ -7,14 +7,15 @@ ci: check
 # RUN SERVER ###################################################################
 
 IP = $(shell ipconfig getifaddr en0 || ipconfig getifaddr en1)
+PORT ?= 9292
 
 .PHONY: run
 run: depends
-	bundle exec rackup
+	bundle exec rackup --host 0.0.0.0 --port $(PORT)
 
 .PHONY: launch
 launch: depends
-	eval "sleep 3; open http://$(IP):9292" & $(MAKE) run
+	eval "sleep 1; open http://$(IP):$(PORT)" & $(MAKE) run
 
 # DEPENDENCY INSTALLATION ######################################################
 
@@ -32,3 +33,12 @@ $(GEMS): Gemfile*
 .PHONY: check
 check: depends
 	bundle exec htmlproof public --href-ignore "#"
+
+# CLEANUP ######################################################################
+
+.PHONY: clean
+clean:
+
+.PHONY: clean-all
+clean-all:
+	rm -rf $(VENDOR)
