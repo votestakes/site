@@ -5,7 +5,7 @@ rvm:
 - 2.0.0
 
 cache:
-  directores:
+  directories:
   - vendor
 
 install:
