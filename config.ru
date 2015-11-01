@@ -5,6 +5,7 @@ use Rack::Static,
     "/fonts",
     "/img",
     "/js",
+    "/icon",
   ],
   :root => "public"
 
