@@ -34,7 +34,7 @@ $(GEMS): Gemfile*
 
 .PHONY: build
 build: depends
-	bundle exec smusher $(FILES)
+	bundle exec image_optim --skip-missing-workers --recursive $(FILES)
 
 # STATIC ANALYSIS ##############################################################
 

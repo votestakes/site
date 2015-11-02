@@ -3,6 +3,6 @@ source 'https://rubygems.org'
 gem 'rack'
 
 group :development do
-  gem 'smusher'
+  gem 'image_optim'
   gem 'html-proofer'
 end
