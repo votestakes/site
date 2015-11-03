@@ -17,7 +17,7 @@ run: build
 
 .PHONY: launch
 launch: depends
-	eval "sleep 1; open http://$(IP):$(PORT)" & $(MAKE) run
+	eval "sleep 3; open http://$(IP):$(PORT)" & $(MAKE) run
 
 # DEPENDENCY INSTALLATION ######################################################
 
