@@ -16,7 +16,7 @@ run: build
 	bundle exec rackup --host 0.0.0.0 --port $(PORT)
 
 .PHONY: launch
-launch: depends
+launch: build
 	eval "sleep 3; open http://$(IP):$(PORT)" & $(MAKE) run
 
 # DEPENDENCY INSTALLATION ######################################################
@@ -33,8 +33,11 @@ $(GEMS): Gemfile*
 # BUILD SITE ###################################################################
 
 .PHONY: build
-build: depends
+build: depends $(VENDOR)/.images-optimized.flag
+
+$(VENDOR)/.images-optimized.flag: $(FILES)
 	bundle exec image_optim --skip-missing-workers --recursive $(FILES)
+	@ touch $@
 
 # STATIC ANALYSIS ##############################################################
 
