@@ -4,6 +4,11 @@ language: ruby
 rvm:
 - 2.2.3
 
+env:
+  global:
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true  # speeds up installation of html-proofer
+  - secure: "IbrsKST+ti5kwNNTJzyxzXB4r2WihIAH43cF7RDhzNHEoGHuTIvEn7oCBgmo3KNAoHl70oPr3JA63DNKPo31dwON4prmlwoHbuNSfS9hxBqH8m1H1KR2d4NZESQuppA6SogE3Sh/ZtMDXgEW2HkHOAVQpXJV/1VotahAy+8FTpB9Pi1R5ZlBknn6SAVeoyfh7pNvavROcq7GBOr04CDH3kt2jxEIMZWdIYLuxdJLjsM7woae3ebtIS5RPqQ9v+ezBgHBDchnLWWISI3VsRYs2A66g6V8hMfrZBo2reWCNg800feIfMrV7MFovVYh6fdZUDN96If/y7r5r9i4B5oUXkz92RSYPQ3O8+iT/RFR/pZXfdVa+92FC610AvKaQhh2MTViPEMxmyX75DjYV48LELkVTlvlBc7LOypbZCnjxbLxClBrQmsSFHbj6JMIh0SjsvMa2JbWxjpw0w28FFrG1dC6gRxuh8zJLotTkNqhe6CUEL0ToRDT8OZwcA+AeqnQBBDc/lKjkK8HJXaNBpJ6zAwqYQZSD6UN/eNsXwMTvYqLNERgvsBqMiHKJb4okc+fQ8qqGGUYSvSavbIVUgcEK6E0tawnUZWr88khOWuyd2tprB/Phd0zHqMpfwzsgPI3Ame8W07JvFhpt/F3XVHKtJoHR6dhh9YxgdUZuwTmYXo="
+
 cache:
   directories:
   - vendor
@@ -13,6 +18,24 @@ install:
 
 script:
 - make ci
+
+after_success: >
+  echo $TRAVIS_BRANCH; echo $TRAVIS_PULL_REQUEST;
+  if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
+    # Generate HTML
+    make build ;
+    # Configure Git with Travis CI information
+    git config --global user.email "travis@travis-ci.org" ;
+    git config --global user.name "travis-ci" ;
+    # Delete the current repository
+    rm -rf .git ;
+    # Rebuild the repository from the generated files and push to GitHub pages
+    cd public ;
+    git init ;
+    git add . ;
+    git commit -m "Deploy Travis CI build $TRAVIS_BUILD_NUMBER to GitHub pages" ;
+    git push -f https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} master:gh-pages ;
+  fi
 
 notifications:
   email:
