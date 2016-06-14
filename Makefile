@@ -48,22 +48,8 @@ check: build
 # DEPLOYMENT ###################################################################
 
 .PHONY: deploy
-deploy:
-ifdef GITHUB_URL
-	# Configure Git
-	git config --global user.email "devops@heroku.com"
-	git config --global user.name "heroku"
-	# Clone from GitHub Pages
-	git clone $(GITHUB_URL) temp --branch gh-pages
-	mv temp/.git public/.git
-	# Add all file changes
-	cd public && echo votestakes.com > CNAME
-	cd public && git add -A && git commit -m "Update published site"
-	# Push to GitHub Pages
-	cd public && git push -f $(GITHUB_URL) gh-pages
-else
-	@ echo Review apps are not deployed to GitHub pages
-endif
+deploy: depends
+	rake deploy_to_github_pages
 
 # CLEANUP ######################################################################
 

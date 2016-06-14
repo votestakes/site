@@ -1,16 +1,21 @@
 {
   "name": "votestakes-site",
   "scripts": {
-    "postdeploy": "make deploy"
+    "postdeploy": "rake $DEPLOY_TASKS"
   },
-  "env": {},
+  "env": {
+    "DEPLOY_TASKS": {
+      "required": true
+    },
+  },
   "formation": {},
   "addons": [
     "papertrail",
   ],
   "buildpacks": [
     {
-      "url": "heroku/ruby"
+      "url": "heroku/ruby",
+      "url": "https://github.com/gunpowderlabs/buildpack-ruby-rake-deploy-tasks",
     }
   ]
 }
