@@ -1,0 +1,16 @@
+{
+  "name": "votestakes-site",
+  "scripts": {
+    "postdeploy": "make deploy"
+  },
+  "env": {},
+  "formation": {},
+  "addons": [
+    "papertrail",
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
