@@ -6,16 +6,16 @@
   "env": {
     "DEPLOY_TASKS": {
       "required": true
-    },
+    }
   },
   "formation": {},
   "addons": [
-    "papertrail",
+    "papertrail"
   ],
   "buildpacks": [
     {
       "url": "heroku/ruby",
-      "url": "https://github.com/gunpowderlabs/buildpack-ruby-rake-deploy-tasks",
+      "url": "https://github.com/gunpowderlabs/buildpack-ruby-rake-deploy-tasks"
     }
   ]
 }
