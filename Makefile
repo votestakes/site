@@ -49,7 +49,7 @@ check: build
 
 .PHONY: deploy
 deploy: depends
-	rake deploy_to_github_pages
+	bundle exec rake deploy_to_github_pages
 
 # CLEANUP ######################################################################
 

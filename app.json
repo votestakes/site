@@ -1,7 +1,7 @@
 {
   "name": "votestakes-site",
   "scripts": {
-    "postdeploy": "rake $DEPLOY_TASKS"
+    "postdeploy": "bundle exec rake $DEPLOY_TASKS"
   },
   "env": {
     "DEPLOY_TASKS": {
